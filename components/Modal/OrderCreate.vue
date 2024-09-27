@@ -1,6 +1,7 @@
 <script setup>
 import { useApplication } from "~/stores/application";
 import { useTranslationsStore } from "~/stores/translations.js";
+import { useCustomToast } from '~/composables/useCustomToast.js';
 
 const props = defineProps({
   tariffId: Number,

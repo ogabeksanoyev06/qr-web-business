@@ -1,5 +1,3 @@
-// composables/useCustomToast.js
-
 import { useToast } from "vue-toastification";
 import CustomToast from "~/components/Common/Toast.vue";
 

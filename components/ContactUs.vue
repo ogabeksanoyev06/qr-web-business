@@ -92,7 +92,11 @@
                 translations["form.Social network"]
               }}</span>
               <nav class="flex items-center gap-6">
-                <a href="" target="_blank">
+                <a
+                  :href="about[0].telegram"
+                  v-if="about[0].telegram"
+                  target="_blank"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -106,7 +110,11 @@
                     />
                   </svg>
                 </a>
-                <a href="" target="_blank">
+                <a
+                  :href="about[0].facebook"
+                  v-if="about[0].facebook"
+                  target="_blank"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -120,7 +128,11 @@
                     />
                   </svg>
                 </a>
-                <a href="" target="_blank">
+                <a
+                  :href="about[0].instagram"
+                  v-if="about[0].instagram"
+                  target="_blank"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -141,10 +153,10 @@
                 translations["form.Phone number"]
               }}</span>
               <a
-                href=""
+                :href="`tel:${about[0].phone_2}`"
                 target="_blank"
                 class="text-base sm:text-xl font-medium"
-                >+998 99 165 32 45</a
+                >{{ about[0].phone_2 }}</a
               >
             </div>
             <div class="flex flex-col min-w-[170px] gap-2">
@@ -161,17 +173,16 @@
             class="flex items-center flex-col sm:flex-row sm:justify-between rounded-2xl bg-white p-6"
           >
             <div class="flex flex-col">
-              <span class="text-grey-4 text-base">
-                {{ translations["form.For instant communication"] }}
-              </span>
-              <span class="text-xl font-medium">+998 99 132 45 62</span>
+              <span class="text-grey-4 text-base">{{
+                translations["form.For instant communication"]
+              }}</span>
+              <span class="text-xl font-medium">{{ about[0].phone_2 }}</span>
             </div>
             <a
-              href=""
+              href="mailto:@uzbcsupport"
               target="_blank"
               class="flex items-center gap-2 py-4 px-6"
             >
-              @uzbcsupport
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -210,14 +221,17 @@
 import { useTranslationsStore } from "~/stores/translations.js";
 import { useApplication } from "~/stores/application.js";
 import { useCustomToast } from "~/composables/useCustomToast.js";
+import { useAboutStore } from "~/stores/about.js";
 
 const { showToast } = useCustomToast();
 
 const translationsStore = useTranslationsStore();
 const applicationStore = useApplication();
+const infosStore = useAboutStore();
 
 const { orderCreate } = applicationStore;
 const { translations } = storeToRefs(translationsStore);
+const { about } = storeToRefs(infosStore);
 
 const { loading } = storeToRefs(applicationStore);
 
@@ -242,7 +256,7 @@ const sendConsultationForm = async () => {
       form.phone = "";
     }
   } catch (error) {
-    showToast(translations.value["main.success-error"], "error");
+    console.error(translations.value["main.error-text"], "sasasasasas");
   }
 };
 </script>

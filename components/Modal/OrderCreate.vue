@@ -1,10 +1,10 @@
 <script setup>
 import { useApplication } from "~/stores/application";
 import { useTranslationsStore } from "~/stores/translations.js";
-import { useCustomToast } from '~/composables/useCustomToast.js';
+import { useCustomToast } from "~/composables/useCustomToast.js";
 
 const props = defineProps({
-  tariffId: Number,
+  tariffId: [Number, String],
 });
 
 const translationsStore = useTranslationsStore();
@@ -70,7 +70,7 @@ const sendConsultationForm = async () => {
 
 <template>
   <div>
-    <Dialog v-model:open="isOpen">
+    <Dialog v-model="isOpen">
       <DialogTrigger as-child> <slot></slot> </DialogTrigger>
       <DialogScrollContent class="sm:max-w-[708px] p-6 !rounded-3xl">
         <DialogHeader>

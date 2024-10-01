@@ -15,8 +15,9 @@ export default defineNuxtConfig({
     storesDirs: ["./stores/**", "./custom-folder/stores/**"],
   },
   i18n: {
-    locales: ["uz", "ru", "en"],
-    defaultLocale: "uz",
+    strategy: "prefix_except_default",
+    locales: ["ru", "uz", "en"],
+    defaultLocale: "ru",
     vueI18n: "./i18n.config.ts",
   },
   runtimeConfig: {

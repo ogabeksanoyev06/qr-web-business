@@ -2,14 +2,22 @@
   <!-- Seo -->
 
   <Head>
-    <Title>{{ profile?.slug ? profile?.name + " | UzbekBusinessConnect" : "UzbekBusinnessConnect" }}</Title>
-    <Meta name="og:title"
-      :content="profile?.slug ? profile?.name + ' | UzbekBusinessConnect' : 'UzbekBusinnessConnect'" />
+    <Title>{{
+      profile?.slug
+        ? profile?.name + " | UzbekBusinessConnect"
+        : "UzbekBusinnessConnect"
+    }}</Title>
+    <Meta
+      name="og:title"
+      :content="
+        profile?.slug
+          ? profile?.name + ' | UzbekBusinessConnect'
+          : 'UzbekBusinnessConnect'
+      "
+    />
   </Head>
 
-  <div v-if="htmlData !== null" v-html="htmlData">
-
-  </div>
+  <div v-if="htmlData !== null" v-html="htmlData"></div>
 
   <div v-else class="cnt">
     <!-- Header -->
@@ -41,9 +49,12 @@
       <!-- Share -->
       <UI-Divider icon-name="fa-solid fa-share-from-square" />
       <button @click="toggleCard" class="btn w-full">SHARE MY INFO</button>
-      <NuxtLink href="https://uzbekbusinessconnect.com"
-        class="rounded-xl py-2 px-4 mx-auto block border mt-5 text-base max-w-max" target="_blank">Get Your Connect
-        Card</NuxtLink>
+      <NuxtLink
+        href="https://uzbekbusinessconnect.com"
+        class="rounded-xl py-2 px-4 mx-auto block border mt-5 text-base max-w-max"
+        target="_blank"
+        >Get Your Connect Card</NuxtLink
+      >
     </div>
 
     <!-- QR CODE -->
@@ -67,16 +78,21 @@ const { fetchData } = profileStore;
 const res = await fetchData(params.slug);
 
 onMounted(() => {
-  document.documentElement.style.setProperty('--primary', colors.value.primary);
-  document.documentElement.style.setProperty('--hoverColor', colors.value.hoverColor);
-})
+  document.documentElement.style.setProperty("--primary", colors.value.primary);
+  document.documentElement.style.setProperty(
+    "--hoverColor",
+    colors.value.hoverColor
+  );
+});
 
 // Create error
 if (!res) {
-  throw createError({ statusCode: 404, statusMessage: "User not found!", fatal: true })
+  throw createError({
+    statusCode: 404,
+    statusMessage: "User not found!",
+    fatal: true,
+  });
 }
-
-
 </script>
 
 <style></style>
